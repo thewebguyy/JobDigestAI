@@ -12,8 +12,10 @@ import {
     Search,
     Calendar,
     Briefcase,
-    ChevronRight
+    ChevronRight,
+    LogOut
 } from "lucide-react";
+import { SignOutButton } from "@/components/auth/SignOutButton";
 import { Input } from "@/components/ui/input";
 
 export default function HistoryPage() {
@@ -45,6 +47,7 @@ export default function HistoryPage() {
                     <Button variant="ghost" className="w-full justify-start gap-4 font-bold text-[10px] uppercase tracking-widest px-4 py-6 opacity-50 hover:opacity-100" asChild>
                         <Link href="/dashboard/settings"><Settings className="h-4 w-4" /> Settings</Link>
                     </Button>
+                    <SignOutButton />
                 </nav>
             </aside>
 

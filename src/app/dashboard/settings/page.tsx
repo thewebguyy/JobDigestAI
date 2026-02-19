@@ -17,8 +17,10 @@ import {
     Bell,
     CreditCard,
     User,
-    Shield
+    Shield,
+    LogOut
 } from "lucide-react";
+import { SignOutButton } from "@/components/auth/SignOutButton";
 
 export default function SettingsPage() {
     const [skills, setSkills] = useState<string[]>(["React", "Next.js", "TypeScript", "Node.js"]);
@@ -61,6 +63,7 @@ export default function SettingsPage() {
                     <Button variant="secondary" className="w-full justify-start gap-4 font-bold text-[10px] uppercase tracking-widest px-4 py-6" asChild>
                         <Link href="/dashboard/settings"><Settings className="h-4 w-4" /> Settings</Link>
                     </Button>
+                    <SignOutButton />
                 </nav>
             </aside>
 

@@ -8,8 +8,10 @@ import {
     ExternalLink,
     TrendingUp,
     Briefcase,
-    ChevronRight
+    ChevronRight,
+    LogOut
 } from "lucide-react";
+import { SignOutButton } from "@/components/auth/SignOutButton";
 
 export default function DashboardPage() {
     // Mock data for demonstration
@@ -74,19 +76,19 @@ export default function DashboardPage() {
                             <Card
                                 key={gig.id}
                                 className={`group border-x-0 md:border-x border-y shadow-none hover:shadow-2xl hover:border-primary/30 transition-all duration-300 bg-card overflow-hidden ${isTop ? 'md:ring-2 md:ring-primary/20 md:scale-[1.02] mb-12' :
-                                        isCondensed ? 'opacity-70 hover:opacity-100 scale-95 md:scale-100' : 'mb-4'
+                                    isCondensed ? 'opacity-70 hover:opacity-100 scale-95 md:scale-100' : 'mb-4'
                                     }`}
                             >
                                 <CardContent className="p-0">
                                     <div className={`flex flex-col md:flex-row ${isTop ? 'p-8 md:p-12' :
-                                            isCondensed ? 'p-4 md:p-6' : 'p-6 md:p-8'
+                                        isCondensed ? 'p-4 md:p-6' : 'p-6 md:p-8'
                                         } items-start gap-8`}>
                                         <div className="flex-1 space-y-4 w-full">
                                             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                                                 <div className="space-y-1">
                                                     <div className="flex items-center gap-3">
                                                         <h2 className={`font-black tracking-tight uppercase ${isTop ? 'text-2xl md:text-3xl' :
-                                                                isCondensed ? 'text-base' : 'text-lg md:text-xl text-foreground/90'
+                                                            isCondensed ? 'text-base' : 'text-lg md:text-xl text-foreground/90'
                                                             }`}>
                                                             {gig.title}
                                                         </h2>

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 import { Resend } from "resend";
+import { ingestJobsIntoCache } from "@/lib/job-fetcher";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -12,9 +13,12 @@ export async function GET(request: Request) {
     }
 
     try {
-        // 1. Fetch all active users
+        // 1. Ingest new jobs into the cache first
+        await ingestJobsIntoCache(supabase);
+
+        // 2. Fetch all active users
         const { data: users, error: userError } = await supabase
-            .from("users")
+            .from("profiles")
             .select(`
         id,
         email,
@@ -30,8 +34,7 @@ export async function GET(request: Request) {
 
         if (userError) throw userError;
 
-        // 2. Fetch new jobs from cache (populated by another process or on demand)
-        // For MVP, we'll simulate fetching from an external API or a pre-populated cache
+        // 3. Fetch new jobs from cache
         const { data: newJobs, error: jobError } = await supabase
             .from("job_cache")
             .select("*")
