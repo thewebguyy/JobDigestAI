@@ -1,165 +1,158 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent } from "@/components/ui/card";
 import {
     Zap,
     Settings,
     History,
     ExternalLink,
     TrendingUp,
-    Users,
-    ArrowUpRight,
-    Clock
+    Briefcase,
+    ChevronRight
 } from "lucide-react";
 
 export default function DashboardPage() {
     // Mock data for demonstration
     const recentGigs = [
-        { id: 1, title: "Senior React Developer", company: "SkyNet Systems", pay: "$85/hr", score: 9.8, date: "2h ago" },
-        { id: 2, title: "FullStack Next.js Engineer", company: "Nebula AI", pay: "$120k - $160k", score: 9.2, date: "5h ago" },
-        { id: 3, title: "Front-end Architect", company: "GrowthLoop", pay: "$95/hr", score: 8.9, date: "Yesterday" },
+        {
+            id: 1,
+            title: "Senior React Developer & Optimization Lead",
+            company: "SkyNet Systems",
+            pay: "$115/hr",
+            tier: "Strong Match",
+            score: "98%",
+            date: "2h ago",
+            desc: "Lead the frontend performance audit and implement high-throughput dashboard features for an AI-driven logistics platform. Requires deep knowledge of Next.js 14 and edge functions."
+        },
+        { id: 2, title: "FullStack Next.js Engineer", company: "Nebula AI", pay: "$120k", tier: "Strong Match", score: "92%", date: "5h ago" },
+        { id: 3, title: "Front-end Architect", company: "GrowthLoop", pay: "$95/hr", tier: "Good Match", score: "89%", date: "Yesterday" },
+        { id: 4, title: "Product UI Engineer", company: "Stealth Startup", pay: "$140k", tier: "Good Match", score: "84%", date: "Yesterday" },
+        { id: 5, title: "React Component Library Lead", company: "DesignForce", pay: "$80/hr", tier: "Worth Reviewing", score: "78%", date: "2 days ago" },
+        { id: 6, title: "Marketplace UI Specialist", company: "CodeLabs", pay: "$110k", tier: "Worth Reviewing", score: "74%", date: "2 days ago" },
+        { id: 7, title: "Junior React Dev", company: "FastTrack", pay: "$65/hr", tier: "Potential Signal", score: "71%", date: "3 days ago" },
     ];
 
     return (
-        <div className="flex min-h-screen bg-slate-50/50">
+        <div className="flex min-h-screen bg-background">
             {/* Sidebar - Desktop */}
-            <aside className="w-64 border-r bg-white hidden md:flex flex-col sticky top-0 h-screen">
-                <div className="p-6 border-b flex items-center gap-2">
-                    <Zap className="h-6 w-6 text-primary fill-primary" />
-                    <span className="font-bold text-lg">JobDigest AI</span>
+            <aside className="w-64 border-r bg-card hidden md:flex flex-col sticky top-0 h-screen">
+                <div className="p-8 pb-12 text-center border-b border-primary/5">
+                    <Link href="/" className="flex items-center justify-center gap-2">
+                        <Zap className="h-5 w-5 text-primary fill-primary" />
+                        <span className="font-bold text-sm tracking-widest uppercase text-primary">JobDigest AI</span>
+                    </Link>
                 </div>
-                <nav className="flex-1 p-4 space-y-2">
-                    <Button variant="secondary" className="w-full justify-start gap-3" asChild>
-                        <Link href="/dashboard"><TrendingUp className="h-4 w-4" /> Overview</Link>
+                <nav className="flex-1 px-4 py-8 space-y-1">
+                    <Button variant="secondary" className="w-full justify-start gap-4 font-bold text-[10px] uppercase tracking-widest px-4 py-6" asChild>
+                        <Link href="/dashboard"><TrendingUp className="h-4 w-4" /> Reports</Link>
                     </Button>
-                    <Button variant="ghost" className="w-full justify-start gap-3" asChild>
+                    <Button variant="ghost" className="w-full justify-start gap-4 font-bold text-[10px] uppercase tracking-widest px-4 py-6 opacity-50 hover:opacity-100" asChild>
                         <Link href="/dashboard/history"><History className="h-4 w-4" /> History</Link>
                     </Button>
-                    <Button variant="ghost" className="w-full justify-start gap-3" asChild>
-                        <Link href="/dashboard/settings"><Settings className="h-4 w-4" /> Preferences</Link>
+                    <Button variant="ghost" className="w-full justify-start gap-4 font-bold text-[10px] uppercase tracking-widest px-4 py-6 opacity-50 hover:opacity-100" asChild>
+                        <Link href="/dashboard/settings"><Settings className="h-4 w-4" /> Settings</Link>
                     </Button>
                 </nav>
-                <div className="p-4 border-t">
-                    <Card className="bg-primary text-primary-foreground border-none">
-                        <CardHeader className="p-4 pb-0">
-                            <CardTitle className="text-sm">Trial Ends in 5 days</CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-4 pt-2">
-                            <Button size="sm" variant="secondary" className="w-full text-xs">Upgrade Now</Button>
-                        </CardContent>
-                    </Card>
-                </div>
             </aside>
 
-            <main className="flex-1 p-4 md:p-8">
-                <header className="flex justify-between items-center mb-8">
-                    <div>
-                        <h1 className="text-3xl font-bold">Good morning, Alex</h1>
-                        <p className="text-slate-500">Here's what our AI found for you today.</p>
-                    </div>
-                    <div className="flex gap-2">
-                        <Button variant="outline" size="icon" className="md:hidden" asChild>
-                            <Link href="/dashboard/settings"><Settings className="h-4 w-4" /></Link>
-                        </Button>
-                        <Button className="hidden md:flex gap-2" asChild>
-                            <Link href="/dashboard/settings"><Settings className="h-4 w-4" /> Edit Preferences</Link>
-                        </Button>
+            <main className="flex-1 md:max-w-4xl mx-auto px-6 py-12 md:py-20">
+                <header className="mb-16 border-b pb-8 border-primary/10">
+                    <div className="space-y-4">
+                        <p className="text-[10px] font-bold font-mono uppercase tracking-[0.2em] text-muted-foreground italic">
+                            Thursday, Feb 19 · 14 matches found · 3 above your rate floor · Top match: Senior React Developer, $115/hr
+                        </p>
+                        <h1 className="text-4xl font-black tracking-tighter uppercase leading-none">Intelligence Briefing</h1>
                     </div>
                 </header>
 
-                {/* Stats Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <Card className="border-none shadow-sm">
-                        <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-sm font-medium text-slate-500">Total Matches</CardTitle>
-                            <Users className="h-4 w-4 text-slate-400" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">124</div>
-                            <p className="text-xs text-green-600 flex items-center gap-1 mt-1">
-                                <ArrowUpRight className="h-3 w-3" /> +12% from last week
-                            </p>
-                        </CardContent>
-                    </Card>
-                    <Card className="border-none shadow-sm">
-                        <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-sm font-medium text-slate-500">Top Gig Score</CardTitle>
-                            <Zap className="h-4 w-4 text-yellow-500" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">9.8/10</div>
-                            <p className="text-xs text-slate-500 mt-1">
-                                Perfect match for "React" & "Next.js"
-                            </p>
-                        </CardContent>
-                    </Card>
-                    <Card className="border-none shadow-sm">
-                        <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-sm font-medium text-slate-500">Savings</CardTitle>
-                            <Clock className="h-4 w-4 text-blue-500" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">4.5 hrs</div>
-                            <p className="text-xs text-slate-500 mt-1">
-                                Estimated time saved this week
-                            </p>
-                        </CardContent>
-                    </Card>
-                </div>
+                <div className="space-y-6">
+                    {recentGigs.map((gig, idx) => {
+                        const isTop = idx === 0;
+                        const isCondensed = idx >= 5;
 
-                {/* Main Content */}
-                <Tabs defaultValue="todays-matches" className="space-y-4">
-                    <TabsList className="bg-transparent border-b rounded-none h-auto p-0 gap-6">
-                        <TabsTrigger value="todays-matches" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent pb-2 px-0">
-                            Today's Matches
-                        </TabsTrigger>
-                        <TabsTrigger value="saved" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent pb-2 px-0">
-                            Saved Gigs
-                        </TabsTrigger>
-                    </TabsList>
-
-                    <TabsContent value="todays-matches" className="space-y-4">
-                        {recentGigs.map((gig) => (
-                            <Card key={gig.id} className="group hover:border-primary/50 transition-all border-none bg-white shadow-sm overflow-hidden">
+                        return (
+                            <Card
+                                key={gig.id}
+                                className={`group border-x-0 md:border-x border-y shadow-none hover:shadow-2xl hover:border-primary/30 transition-all duration-300 bg-card overflow-hidden ${isTop ? 'md:ring-2 md:ring-primary/20 md:scale-[1.02] mb-12' :
+                                        isCondensed ? 'opacity-70 hover:opacity-100 scale-95 md:scale-100' : 'mb-4'
+                                    }`}
+                            >
                                 <CardContent className="p-0">
-                                    <div className="flex flex-col md:flex-row p-6 items-start md:items-center gap-4">
-                                        <div className="bg-slate-100 p-3 rounded-lg group-hover:bg-primary/5 transition-colors">
-                                            <Briefcase className="h-6 w-6 text-slate-600 group-hover:text-primary" />
-                                        </div>
-                                        <div className="flex-1">
-                                            <div className="flex items-center gap-2 mb-1">
-                                                <h3 className="font-bold text-lg">{gig.title}</h3>
-                                                <Badge variant="outline" className="text-[10px] font-bold border-green-200 bg-green-50 text-green-700">NEW</Badge>
+                                    <div className={`flex flex-col md:flex-row ${isTop ? 'p-8 md:p-12' :
+                                            isCondensed ? 'p-4 md:p-6' : 'p-6 md:p-8'
+                                        } items-start gap-8`}>
+                                        <div className="flex-1 space-y-4 w-full">
+                                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                                <div className="space-y-1">
+                                                    <div className="flex items-center gap-3">
+                                                        <h2 className={`font-black tracking-tight uppercase ${isTop ? 'text-2xl md:text-3xl' :
+                                                                isCondensed ? 'text-base' : 'text-lg md:text-xl text-foreground/90'
+                                                            }`}>
+                                                            {gig.title}
+                                                        </h2>
+                                                    </div>
+                                                    <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground group-hover:text-primary transition-colors">
+                                                        <span className="flex items-center gap-2"><Briefcase className="h-3 w-3" /> {gig.company}</span>
+                                                        {!isCondensed && <span>•</span>}
+                                                        {!isCondensed && <span className="text-foreground/80">{gig.pay}</span>}
+                                                    </div>
+                                                </div>
+
+                                                <div className={`flex ${isCondensed ? 'flex-row' : 'flex-col'} items-start md:items-end gap-1 md:gap-2`}>
+                                                    <span className={`font-mono font-bold bg-primary/10 text-primary px-3 py-1 rounded-sm border border-primary/20 ${isCondensed ? 'text-[9px]' : 'text-xs'}`}>
+                                                        {gig.score} MATCH
+                                                    </span>
+                                                    {!isCondensed && (
+                                                        <span className="text-[9px] font-black uppercase text-muted-foreground tracking-widest opacity-70 group-hover:opacity-100 transition-opacity">
+                                                            {gig.tier}
+                                                        </span>
+                                                    )}
+                                                </div>
                                             </div>
-                                            <div className="flex flex-wrap gap-4 text-sm text-slate-500">
-                                                <span>{gig.company}</span>
-                                                <span>•</span>
-                                                <span className="font-medium text-slate-700">{gig.pay}</span>
-                                                <span>•</span>
-                                                <span>{gig.date}</span>
+
+                                            {isTop && gig.desc && (
+                                                <p className="text-muted-foreground text-base leading-relaxed max-w-2xl font-medium pt-2">
+                                                    {gig.desc}
+                                                </p>
+                                            )}
+
+                                            <div className={`flex items-center justify-between ${isCondensed ? 'pt-2' : 'pt-4 border-t border-primary/5'}`}>
+                                                <span className={`font-bold uppercase tracking-widest text-muted-foreground italic ${isCondensed ? 'text-[8px]' : 'text-[10px]'}`}>
+                                                    Lever • {gig.date} {isCondensed && `• ${gig.pay}`}
+                                                </span>
+                                                <Button variant="link" className={`p-0 h-auto font-black uppercase tracking-widest gap-2 group-hover:translate-x-1 transition-transform ${isCondensed ? 'text-[9px]' : 'text-[10px]'}`}>
+                                                    {isCondensed ? 'View' : 'Review Report'} <ChevronRight className="h-3 w-3" />
+                                                </Button>
                                             </div>
                                         </div>
-                                        <div className="flex flex-row md:flex-col items-center md:items-end gap-3 w-full md:w-auto mt-4 md:mt-0 pt-4 md:pt-0 border-t md:border-t-0 border-slate-100">
-                                            <div className="flex items-center gap-2 mr-auto md:mr-0">
-                                                <span className="text-xs text-slate-400 font-medium tracking-wider uppercase">Match Score</span>
-                                                <span className="text-xl font-bold text-primary">{gig.score}</span>
+
+                                        {!isCondensed && (
+                                            <div className="hidden md:flex flex-col justify-center border-l border-primary/5 pl-8 self-stretch">
+                                                <Button size={isTop ? "lg" : "sm"} className="font-black uppercase tracking-widest px-8">
+                                                    {isTop ? "Claim Position" : "View"}
+                                                </Button>
                                             </div>
-                                            <Button size="sm" className="gap-2">
-                                                View Details <ExternalLink className="h-3 w-3" />
-                                            </Button>
-                                        </div>
+                                        )}
                                     </div>
                                 </CardContent>
                             </Card>
-                        ))}
-                        <Button variant="ghost" className="w-full border-2 border-dashed h-24 hover:bg-slate-50 hover:border-slate-300">
-                            No more matches for today. Next digest arriving in 14 hours.
-                        </Button>
-                    </TabsContent>
-                </Tabs>
+                        )
+                    })}
+
+
+                    <div className="pt-20 pb-40 text-center space-y-6">
+                        <div className="inline-flex items-center justify-center p-4 bg-primary/5 rounded-full mb-4">
+                            <History className="h-8 w-8 text-primary opacity-30" />
+                        </div>
+                        <h3 className="font-black uppercase tracking-widest text-sm text-muted-foreground">End of Daily Report</h3>
+                        <p className="text-xs font-medium text-muted-foreground max-w-xs mx-auto leading-relaxed">
+                            We analyzed 4,281 listings to find these 5 matches for you.
+                            Next report arrives in 14 hours.
+                        </p>
+                    </div>
+                </div>
             </main>
         </div>
     );
 }
+

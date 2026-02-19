@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import {
     Zap,
     Settings,
@@ -12,91 +11,95 @@ import {
     ExternalLink,
     Search,
     Calendar,
-    Briefcase
+    Briefcase,
+    ChevronRight
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 export default function HistoryPage() {
     const historicalGigs = [
-        { id: 101, title: "Frontend Lead", company: "MetaFlow", pay: "$110/hr", score: 9.9, date: "Feb 10, 2024" },
-        { id: 102, title: "Product Designer", company: "Vercel", pay: "$150k", score: 9.5, date: "Feb 9, 2024" },
-        { id: 103, title: "React Developer", company: "Stripe", pay: "$95/hr", score: 9.2, date: "Feb 8, 2024" },
-        { id: 104, title: "T3 Stack Expert", company: "Local startups", pay: "$80/hr", score: 8.8, date: "Feb 7, 2024" },
-        { id: 105, title: "Next.js Consultant", company: "Freelance", pay: "$120/hr", score: 8.5, date: "Feb 6, 2024" },
+        { id: 101, title: "Frontend Lead & Architect", company: "MetaFlow", pay: "$110/hr", tier: "Strong Match", score: "99%", date: "Feb 10, 2024" },
+        { id: 102, title: "Product Engineering Lead", company: "Vercel", pay: "$180k", tier: "Strong Match", score: "95%", date: "Feb 9, 2024" },
+        { id: 103, title: "Senior React Developer", company: "Stripe", pay: "$95/hr", tier: "Good Match", score: "92%", date: "Feb 8, 2024" },
+        { id: 104, title: "Full Stack Expert", company: "Stealth Startup", pay: "$85/hr", tier: "Good Match", score: "88%", date: "Feb 7, 2024" },
+        { id: 105, title: "Next.js Performance Lead", company: "GrowthLoop", pay: "$120/hr", tier: "Worth Reviewing", score: "85%", date: "Feb 6, 2024" },
     ];
 
     return (
-        <div className="flex min-h-screen bg-slate-50/50">
+        <div className="flex min-h-screen bg-background">
             {/* Sidebar - Desktop */}
-            <aside className="w-64 border-r bg-white hidden md:flex flex-col sticky top-0 h-screen">
-                <div className="p-6 border-b flex items-center gap-2">
-                    <Zap className="h-6 w-6 text-primary fill-primary" />
-                    <span className="font-bold text-lg">JobDigest AI</span>
+            <aside className="w-64 border-r bg-card hidden md:flex flex-col sticky top-0 h-screen">
+                <div className="p-8 pb-12 text-center border-b border-primary/5">
+                    <Link href="/" className="flex items-center justify-center gap-2">
+                        <Zap className="h-5 w-5 text-primary fill-primary" />
+                        <span className="font-bold text-sm tracking-widest uppercase text-primary">JobDigest AI</span>
+                    </Link>
                 </div>
-                <nav className="flex-1 p-4 space-y-2">
-                    <Button variant="ghost" className="w-full justify-start gap-3" asChild>
-                        <Link href="/dashboard"><TrendingUp className="h-4 w-4" /> Overview</Link>
+                <nav className="flex-1 px-4 py-8 space-y-1">
+                    <Button variant="ghost" className="w-full justify-start gap-4 font-bold text-[10px] uppercase tracking-widest px-4 py-6 opacity-50 hover:opacity-100" asChild>
+                        <Link href="/dashboard"><TrendingUp className="h-4 w-4" /> Reports</Link>
                     </Button>
-                    <Button variant="secondary" className="w-full justify-start gap-3" asChild>
+                    <Button variant="secondary" className="w-full justify-start gap-4 font-bold text-[10px] uppercase tracking-widest px-4 py-6" asChild>
                         <Link href="/dashboard/history"><History className="h-4 w-4" /> History</Link>
                     </Button>
-                    <Button variant="ghost" className="w-full justify-start gap-3" asChild>
-                        <Link href="/dashboard/settings"><Settings className="h-4 w-4" /> Preferences</Link>
+                    <Button variant="ghost" className="w-full justify-start gap-4 font-bold text-[10px] uppercase tracking-widest px-4 py-6 opacity-50 hover:opacity-100" asChild>
+                        <Link href="/dashboard/settings"><Settings className="h-4 w-4" /> Settings</Link>
                     </Button>
                 </nav>
             </aside>
 
-            <main className="flex-1 p-4 md:p-8">
-                <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-                    <div>
-                        <h1 className="text-3xl font-bold">Digest History</h1>
-                        <p className="text-slate-500">Every job we&apos;ve ever matched for you.</p>
+            <main className="flex-1 md:max-w-4xl mx-auto px-6 py-12 md:py-20">
+                <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16 border-b pb-8 border-primary/10">
+                    <div className="space-y-2">
+                        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Historical Data</p>
+                        <h1 className="text-4xl font-black tracking-tighter uppercase leading-tight">Match Intelligence Archive</h1>
                     </div>
-                    <div className="relative w-full md:w-64">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                        <Input className="pl-9" placeholder="Search history..." />
+                    <div className="relative w-full md:w-80">
+                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input className="pl-11 bg-card border-primary/10 h-12" placeholder="Search archive signal..." />
                     </div>
                 </header>
 
                 <div className="space-y-4">
-                    <div className="flex items-center justify-between px-4 text-xs font-semibold uppercase tracking-wider text-slate-400">
-                        <div className="flex gap-12">
-                            <span>Job Details</span>
-                        </div>
-                        <div className="flex gap-12 items-center">
-                            <span className="hidden md:inline">Score</span>
-                            <span className="w-24 text-right">Date Found</span>
-                        </div>
+                    <div className="flex items-center justify-between px-6 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">
+                        <span>High-Signal Matches</span>
+                        <span>Confidence & Deployment</span>
                     </div>
 
                     {historicalGigs.map((gig) => (
-                        <Card key={gig.id} className="border-none shadow-sm hover:bg-slate-50 transition-colors">
-                            <CardContent className="p-4 md:p-6">
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-4">
-                                        <div className="bg-white p-2 border rounded-md shadow-sm">
-                                            <Briefcase className="h-5 w-5 text-slate-400" />
+                        <Card key={gig.id} className="border-2 border-primary/5 hover:border-primary/20 transition-all shadow-none bg-card group">
+                            <CardContent className="p-6 md:p-10">
+                                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+                                    <div className="flex items-start gap-6 flex-1">
+                                        <div className="bg-primary/5 p-4 rounded-sm border border-primary/10 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                                            <Briefcase className="h-5 w-5" />
                                         </div>
-                                        <div>
-                                            <h3 className="font-bold">{gig.title}</h3>
-                                            <div className="flex gap-2 text-sm text-slate-500">
+                                        <div className="space-y-1">
+                                            <h3 className="font-bold text-lg md:text-xl uppercase tracking-tight">{gig.title}</h3>
+                                            <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
                                                 <span>{gig.company}</span>
                                                 <span>•</span>
-                                                <span className="font-medium text-slate-900">{gig.pay}</span>
+                                                <span className="text-foreground">{gig.pay}</span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="flex items-center gap-8 md:gap-12 text-sm">
-                                        <div className="hidden md:flex flex-col items-center">
-                                            <span className="text-xl font-bold text-primary">{gig.score}</span>
+                                    <div className="flex items-center gap-12 w-full md:w-auto border-t md:border-t-0 pt-6 md:pt-0 border-primary/5">
+                                        <div className="flex flex-col items-start md:items-end gap-1">
+                                            <span className="font-mono text-xs font-bold bg-primary/10 text-primary px-3 py-1 rounded-sm border border-primary/20">
+                                                {gig.score}
+                                            </span>
+                                            <span className="text-[9px] font-black uppercase text-muted-foreground tracking-widest opacity-70">
+                                                {gig.tier}
+                                            </span>
                                         </div>
-                                        <div className="flex flex-col items-end gap-2">
-                                            <span className="text-slate-500 flex items-center gap-1">
+
+                                        <div className="flex-1 md:flex-none flex flex-col items-end gap-2">
+                                            <span className="text-[10px] font-bold text-muted-foreground flex items-center gap-2 italic">
                                                 <Calendar className="h-3 w-3" /> {gig.date}
                                             </span>
-                                            <Button variant="ghost" size="sm" className="h-8 gap-2 text-primary hover:text-primary hover:bg-primary/5">
-                                                Apply <ExternalLink className="h-3 w-3" />
+                                            <Button variant="ghost" size="sm" className="h-10 gap-2 font-black text-[10px] uppercase tracking-widest p-0 hover:translate-x-1 transition-transform">
+                                                Review Report <ChevronRight className="h-3 w-3" />
                                             </Button>
                                         </div>
                                     </div>
@@ -106,10 +109,13 @@ export default function HistoryPage() {
                     ))}
                 </div>
 
-                <div className="mt-8 flex justify-center">
-                    <Button variant="outline">Load Earlier Matches</Button>
+                <div className="mt-20 pb-40 flex justify-center">
+                    <Button variant="outline" className="px-12 h-14 font-black uppercase tracking-widest border-primary/10 hover:bg-primary/5">
+                        Load Archive Deployment
+                    </Button>
                 </div>
             </main>
         </div>
     );
 }
+
