@@ -22,7 +22,7 @@ export default function HistoryPage() {
     const historicalGigs = [
         { id: 101, title: "Frontend Lead & Architect", company: "MetaFlow", pay: "$110/hr", tier: "Strong Match", score: "99%", date: "Feb 10, 2024" },
         { id: 102, title: "Product Engineering Lead", company: "Vercel", pay: "$180k", tier: "Strong Match", score: "95%", date: "Feb 9, 2024" },
-        { id: 103, title: "Senior React Developer", company: "Stripe", pay: "$95/hr", tier: "Good Match", score: "92%", date: "Feb 8, 2024" },
+        { id: 103, title: "Senior React Developer", company: "TechCorp", pay: "$95/hr", tier: "Good Match", score: "92%", date: "Feb 8, 2024" },
         { id: 104, title: "Full Stack Expert", company: "Stealth Startup", pay: "$85/hr", tier: "Good Match", score: "88%", date: "Feb 7, 2024" },
         { id: 105, title: "Next.js Performance Lead", company: "GrowthLoop", pay: "$120/hr", tier: "Worth Reviewing", score: "85%", date: "Feb 6, 2024" },
     ];

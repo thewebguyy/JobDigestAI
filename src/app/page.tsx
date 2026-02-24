@@ -162,7 +162,7 @@ export default function LandingPage() {
                   </Button>
                 </Link>
                 <p className="text-[10px] text-center font-bold text-muted-foreground uppercase tracking-widest">
-                  Cancel anytime • Secure via Stripe
+                  Cancel anytime
                 </p>
               </div>
             </div>
