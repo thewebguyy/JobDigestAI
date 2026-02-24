@@ -3,9 +3,11 @@ import { supabase } from "@/lib/supabase";
 import { Resend } from "resend";
 import { ingestJobsIntoCache } from "@/lib/job-fetcher";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     // Check authorization (Vercel Cron provides a secret)
     const authHeader = request.headers.get("authorization");
     if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
